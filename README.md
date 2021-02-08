@@ -6,9 +6,10 @@ A Data Strucuture and Algorithm for nearest point problem.
 |||
 |-|-|
 | Name | Muhammad Nasir |
-| Email | 19B-054-CS |
+| Roll # | 19B-054-CS |
 | Name | Fasih Ahmed |
 | Roll # | 19B-116-CS |
+|-|-|
 
 ## How To Use
 0. Create a folder where you want to download the project.
