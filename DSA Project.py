@@ -69,19 +69,19 @@ class Search:
         self.direction = direction #WENT LEFT/WENT RIGHT
     
     def Placepoint(self, val):
-        self.v = self.__Placepoint(val, self.v, w=None)
+        self.v = self.__Placepoint(val, self.v)
         
-    def __Placepoint(self, val, v, w):
+    def __Placepoint(self, val, v):
 
         if v == None:
             v = Node(val)
             self.pl = v
             self.pl.FULL = False
-            self.pl.ANCESTOR = w
+            # self.pl.ANCESTOR = w
             self.NL.append(self.pl)
         
         if v.FULL == False:
-            self.pr = val
+            self.pr = v
             self.FULL = True
             self.NR.append(self.pr)
         else:
@@ -89,12 +89,12 @@ class Search:
                 if len(self.NL) != 0:
                     self.LRADIUS = self.distance(self.NL(), self.pl.value)
                 if abs(self.distance(val, self.pl.value)) > self.LRADIUS:
-                    self.__Placepoint(val,v.LCHILD, v)
+                    self.__Placepoint(val,v.LCHILD)
             else:
                 if len(self.NR) != 0:
                     self.RRADIUS = self.distance(self.NR(), self.pr.value)
                 if abs(self.distance(val, self.pr.value)) > self.RRADIUS:
-                    self.__Placepoint(val, v.RCHILD, v)
+                    self.__Placepoint(val, v.RCHILD)
                 
     def InOrder(self):
         return self.__InOrder(self.v)
