@@ -7,47 +7,93 @@ class Node:
         self.value = p
         self.LCHILD = None
         self.RCHILD = None
-        self.LRADIUS = 0
-        self.RRADIUS = 0
         self.FULL = False
+        self.ANCESTOR = None
     
     def TempStorage(self, direction):
-        direction = 
+        direction = None
         
 #root.left = LCHILD
 #root.right = RCHILD
 #NODEPOINTER = self.root
 class BST:
+
     def __init__(self):
-        self.root = None
+        self.LRADIUS = 0
+        self.RRADIUS = 0
+        self.pl = None
+        self.pr = None
+        self.v = None
         self.direction = None
+        self.NL = []
+        self.NR = []
+    
+    def NL(self):
+        if len(self.NL) != 0:
+            x = max(self.NL,key=lambda item:item[0])[0]
+            y = max(self.NL,key=lambda item:item[1])[1]
+            t = (x, y)
+        return t
+    
+    def RL(self):
+        if len(self.NR) != 0:
+            x = max(self.NR,key=lambda item:item[0])[0]
+            y = max(self.NR,key=lambda item:item[1])[1]
+            t = (x, y)
+        return t
         
     def distance(self, p1, p2):
+        '''
+        
+
+        Parameters
+        ----------
+        p1 : int
+            point 1 (x1,y1)
+        p2 : int
+            point 2 (x2, y2)
+
+        Returns
+        -------
+        res : float
+            distance between point1 and point2
+
+        '''
         dist = sqrt((p1[0]-p2[0])**2+(p1[1]-p2[1])**2)
         res = float('{:.2}'.format(dist))
         return res
         
     def Decision(self, direction):
-        self.direction = direction
+        self.direction = direction #WENT LEFT/WENT RIGHT
     
-    def Insert(self, value):
-        #wrapper function encapsulates the implementation technique
-        self.root = self.__Insert(self.root, value)
+    def Placepoint(self, val, v, w):
+        if v == None:
+            v = Node(val)
+            self.pl = v
+            self.pl.FULL = False
+            self.pl.ANCESTOR = w
+            self.NL.append(self.pl)
         
-    def __Insert(self, root, value):
-        #this is where the big boy stuff will happen
-        if root is None:
-            root = Node(value)
-            
+        if v.FULL == False:
+            self.pr = val
+            self.FULL = True
+            self.NR.append(self.pr)
         else:
-            #instead of value it will be self.distance(value, root.right) i guess
-            if self.distance(value > root.value:
-                root.pr = self.__Insert(root.pl, value)
-            
+            if abs(self.distance(val, self.pl.value)) < abs(self.distance(val, self.pr.value)):
+                if len(self.NL) != 0:
+                    self.LRADIUS = self.distance(self.NL(), self.pl.value)
+                if abs(self.distance(val, self.pl.value)) > self.LRADIUS:
+                    self.Placepoint(val, v.LCHILD, v)
             else:
-                root.pl = self.__Insert(root.pl, value)
-        
-        return root
+                if len(self.NR) != 0:
+                    self.RRADIUS = self.distance(self.NR(), self.pr.value)
+                if abs(self.distance(val, self.pr.value)) > self.RRADIUS:
+                    self.Placepoint(val, v.RCHILD, v)
+                
+                    
+                    
+                              
+            
 
     
     
