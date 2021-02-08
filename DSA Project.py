@@ -16,7 +16,7 @@ class Node:
 #root.left = LCHILD
 #root.right = RCHILD
 #NODEPOINTER = self.root
-class BST:
+class Search:
 
     def __init__(self):
         self.LRADIUS = 0
