@@ -20,6 +20,7 @@ class Node:
 class Search:
 
     def __init__(self):
+        self.root = None
         self.v = None
         self.LRADIUS = 0
         self.RRADIUS = 0
@@ -95,26 +96,46 @@ class Search:
                     self.RRADIUS = self.distance(self.NR(), self.pr.value)
                 if abs(self.distance(val, self.pr.value)) > self.RRADIUS:
                     self.__Placepoint(val, v.RCHILD)
+                    
+    
+    def Insert(self, value):
+        #wrapper function encapsulates the implementation technique
+        self.root = self.__Insert(self.root, value)
+        
+    def __Insert(self, root, val):
+        #if tree is empty
+        if root is None:
+            root = Node(val)
+            
+        else:
+            if root.LCHILD == None:
+                root.LCHILD = self.__Insert(root.LCHILD, val)
+            
+            else:
+                if self.distance(root.value, val) > self.distance(root.value, root.LCHILD.value):
+                    root.RCHILD = self.__Insert(root.LCHILD, val)
+        
+        return root
                 
     def InOrder(self):
-        return self.__InOrder(self.v)
+        return self.__InOrder(self.root)
     
-    def __InOrder(self, v):
-        if v:
-            self.__InOrder(root.left)
+    def __InOrder(self, root):
+        if root:
+            self.__InOrder(root.LCHILD)
             print(root.value)
-            self.__InOrder(root.right)
+            self.__InOrder(root.RCHILD)
                     
                               
             
 
     
 obj = Search()
-obj.Placepoint((5,3))
-obj.Placepoint((2,8))
-obj.Placepoint((10,4))
-obj.Placepoint((11,2))
-obj.Placepoint((1,2))
+obj.Insert((5,3))
+obj.Insert((2,8))
+obj.Insert((10,4))
+obj.Insert((11,2))
+obj.Insert((1,2))
 obj.InOrder()
 
 '''
