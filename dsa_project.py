@@ -77,10 +77,10 @@ class Search:
     def Decision(self, direction):
         self.direction = direction #WENT LEFT/WENT RIGHT
     
-    def Placepoint(self, val):
+    def Placepoint1(self, val):
         self.v = self.__Placepoint(val, self.v)
         
-    def __Placepoint(self, val, v):
+    def __Placepoint1(self, val, v):
 
         if v == None:
             v = Node(val)
@@ -106,22 +106,22 @@ class Search:
                     self.__Placepoint(val, v.RCHILD)
                     
     
-    def Insert(self, value):
+    def Placepoint(self, value):
         #wrapper function encapsulates the implementation technique
-        self.root = self.__Insert(self.root, value)
+        self.root = self.__Placepoint(self.root, value)
         
-    def __Insert(self, root, val):
+    def __Placepoint(self, root, val):
         #if tree is empty
         if root is None:
             root = Node(val)
             
         else:
             if root.LCHILD == None:
-                root.LCHILD = self.__Insert(root.LCHILD, val)
+                root.LCHILD = self.__Placepoint(root.LCHILD, val)
             
             else:
                 if self.distance(root.value, val) > self.distance(root.value, root.LCHILD.value):
-                    root.RCHILD = self.__Insert(root.LCHILD, val)
+                    root.RCHILD = self.__Placepoint(root.LCHILD, val)
         
         return root
                 
@@ -174,11 +174,11 @@ def Test():
 
     '''
     obj = Search()
-    obj.Insert((5,3))
-    obj.Insert((2,8))
-    obj.Insert((10,4))
-    obj.Insert((11,2))
-    obj.Insert((1,2))
+    obj.Placepoint((5,3))
+    obj.Placepoint((2,8))
+    obj.Placepoint((10,4))
+    obj.Placepoint((11,2))
+    obj.Placepoint((1,2))
     print(obj.NearestPoint((1,1)))
 
 if __name__ == '__main__':
