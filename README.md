@@ -11,10 +11,15 @@ A Data Strucuture and Algorithm for nearest point problem.
 | Roll # | 19B-116-CS |
 
 ## How To Use
-0. Download the files.
-1. Run the following code in the directory you have downloaded the file:
+0. Create a folder where you want to download the project.
+
+1. Download the project in that folder.
+
+2. Run the following code in the directory where you have downloaded the file:
+
 python dsa_project.py
-2. This will return the results for the driver code below.
+
+3. Executing that command will run the driver code below.
 
 # Driver Code:
     obj = Search()
