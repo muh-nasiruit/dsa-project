@@ -9,6 +9,7 @@ class Node:
         self.RCHILD = None
         self.FULL = False
         self.ANCESTOR = None
+
     
     def TempStorage(self, direction):
         direction = None
@@ -16,9 +17,10 @@ class Node:
 #root.left = LCHILD
 #root.right = RCHILD
 #NODEPOINTER = self.root
-class BST:
+class Search:
 
     def __init__(self):
+        self.v = None
         self.LRADIUS = 0
         self.RRADIUS = 0
         self.pl = None
@@ -66,7 +68,11 @@ class BST:
     def Decision(self, direction):
         self.direction = direction #WENT LEFT/WENT RIGHT
     
-    def Placepoint(self, val, v, w):
+    def Placepoint(self, val):
+        self.v = self.__Placepoint(val, self.v, w=None)
+        
+    def __Placepoint(self, val, v, w):
+
         if v == None:
             v = Node(val)
             self.pl = v
@@ -83,20 +89,33 @@ class BST:
                 if len(self.NL) != 0:
                     self.LRADIUS = self.distance(self.NL(), self.pl.value)
                 if abs(self.distance(val, self.pl.value)) > self.LRADIUS:
-                    self.Placepoint(val, v.LCHILD, v)
+                    self.__Placepoint(val,v.LCHILD, v)
             else:
                 if len(self.NR) != 0:
                     self.RRADIUS = self.distance(self.NR(), self.pr.value)
                 if abs(self.distance(val, self.pr.value)) > self.RRADIUS:
-                    self.Placepoint(val, v.RCHILD, v)
+                    self.__Placepoint(val, v.RCHILD, v)
                 
-                    
+    def InOrder(self):
+        return self.__InOrder(self.v)
+    
+    def __InOrder(self, v):
+        if v:
+            self.__InOrder(root.left)
+            print(root.value)
+            self.__InOrder(root.right)
                     
                               
             
 
     
-    
+obj = Search()
+obj.Placepoint((5,3))
+obj.Placepoint((2,8))
+obj.Placepoint((10,4))
+obj.Placepoint((11,2))
+obj.Placepoint((1,2))
+obj.InOrder()
 
 '''
 Calculation for the distance between two points
