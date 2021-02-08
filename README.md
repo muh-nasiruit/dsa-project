@@ -1,7 +1,7 @@
-## DSA Project
+# DSA Project
 A Data Strucuture and Algorithm for nearest point problem.
 
-# Group Members
+## Group Members
 
 |||
 |-|-|
