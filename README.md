@@ -22,7 +22,7 @@ python dsa_project.py
 
 3. Executing that command will run the driver code below.
 
-# Driver Code:
+## Driver Code:
     obj = Search()
     obj.Insert((5,3))
     obj.Insert((2,8))
